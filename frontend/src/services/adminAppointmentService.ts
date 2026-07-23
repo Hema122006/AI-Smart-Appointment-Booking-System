@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:8080/api/admin";
+const API = "https://ai-smart-appointment-booking-system-2.onrender.com/api/admin";
 
 export const getAppointments = () =>
   axios.get(`${API}/appointments`);

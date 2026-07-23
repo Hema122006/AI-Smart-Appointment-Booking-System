@@ -28,7 +28,7 @@ function ForgotPassword() {
 
     try {
       await axios.put(
-        "http://localhost:8080/api/auth/change-password",
+        "https://ai-smart-appointment-booking-system-2.onrender.com/api/auth/change-password",
         {
           mobileNumber: "+91" + form.mobileNumber,
           password: form.password,

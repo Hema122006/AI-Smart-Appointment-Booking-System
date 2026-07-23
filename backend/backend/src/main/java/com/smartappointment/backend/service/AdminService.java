@@ -25,54 +25,37 @@ public class AdminService {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
+public Map<String, Object> getDashboardStatistics() {
 
-    public Map<String, Object> getDashboardStatistics() {
+    Map<String, Object> stats = new HashMap<>();
 
-        Map<String, Object> stats = new HashMap<>();
+    stats.put("patients",
+            userRepository.countByRole(UserRole.PATIENT));
 
-        // ========================
-        // Counts
-        // ========================
+    stats.put("doctors",
+            doctorRepository.count());
 
-        stats.put("totalPatients",
-        userRepository.countByRole(UserRole.PATIENT));
+    stats.put("appointments",
+            appointmentRepository.count());
 
-stats.put("totalDoctors",
-        doctorRepository.count());
+    stats.put("completed",
+            appointmentRepository.countByStatus(AppointmentStatus.COMPLETED));
 
-stats.put("totalAppointments",
-        appointmentRepository.count());
+    stats.put("pending",
+            appointmentRepository.countByStatus(AppointmentStatus.PENDING));
 
-stats.put("completedAppointments",
-        appointmentRepository.countByStatus(AppointmentStatus.COMPLETED));
+    stats.put("cancelled",
+            appointmentRepository.countByStatus(AppointmentStatus.CANCELLED));
 
-stats.put("pendingAppointments",
-        appointmentRepository.countByStatus(AppointmentStatus.PENDING));
+    stats.put("confirmed",
+            appointmentRepository.countByStatus(AppointmentStatus.CONFIRMED));
 
-stats.put("cancelledAppointments",
-        appointmentRepository.countByStatus(AppointmentStatus.CANCELLED));
+    Double revenue = appointmentRepository.getTotalRevenue();
 
-stats.put("confirmedAppointments",
-        appointmentRepository.countByStatus(AppointmentStatus.CONFIRMED));
+    stats.put("revenue", revenue == null ? 0 : revenue);
 
-stats.put("totalRevenue",
-        appointmentRepository.getTotalRevenue());
-
-        // ========================
-        // Total Revenue
-        // ========================
-
-        List<Appointment> appointments = appointmentRepository.findAll();
-
-        double revenue = appointments.stream()
-                .filter(Appointment::isPaymentCompleted)
-                .mapToDouble(a -> a.getDoctor().getConsultationFee())
-                .sum();
-
-        stats.put("revenue", revenue);
-
-        return stats;
-    }
+    return stats;
+}
     public List<Appointment> getAllAppointments() {
         return appointmentRepository.findAll();
     }
