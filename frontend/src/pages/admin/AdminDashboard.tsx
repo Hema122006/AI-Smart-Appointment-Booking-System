@@ -401,15 +401,7 @@ const heading = {
   color: "#0F172A",
 };
 
-const tableHeader = {
-  padding: "14px",
-};
 
-const tableCell = {
-  padding: "14px",
-  textAlign: "center" as const,
-  borderBottom: "1px solid #E5E7EB",
-};
 
 const quickBtn = {
   width: "100%",
