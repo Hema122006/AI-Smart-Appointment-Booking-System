@@ -8,7 +8,10 @@ import com.smartappointment.backend.service.DashboardService;
 
 @RestController
 @RequestMapping("/api/dashboard")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+    "http://localhost:5173",
+    "https://ai-smart-appointment-booking-system.vercel.app"
+})
 public class DashboardController {
 
     @Autowired

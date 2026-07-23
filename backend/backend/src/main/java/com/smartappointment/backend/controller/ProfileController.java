@@ -8,7 +8,10 @@ import com.smartappointment.backend.service.ProfileService;
 
 @RestController
 @RequestMapping("/api/profile")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+    "http://localhost:5173",
+    "https://ai-smart-appointment-booking-system.vercel.app"
+})
 public class ProfileController {
 
     @Autowired

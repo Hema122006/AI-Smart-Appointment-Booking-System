@@ -10,7 +10,10 @@ import com.smartappointment.backend.service.PaymentService;
 
 @RestController
 @RequestMapping("/api/payments")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+    "http://localhost:5173",
+    "https://ai-smart-appointment-booking-system.vercel.app"
+})
 public class PaymentController {
 
     @Autowired

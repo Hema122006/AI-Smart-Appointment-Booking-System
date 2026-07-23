@@ -11,7 +11,10 @@ import com.smartappointment.backend.service.AppointmentService;
 
 @RestController
 @RequestMapping("/api/appointments")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {
+    "http://localhost:5173",
+    "https://ai-smart-appointment-booking-system.vercel.app"
+})
 public class AppointmentController {
 
     @Autowired
